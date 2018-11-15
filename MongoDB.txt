@@ -1,0 +1,119 @@
+-- Start Mongo
+
+sudo service mongod restart
+
+mongo --host 127.0.0.1:27017
+
+------ Users ---------
+
+-- Create User
+
+db.User.insert(
+... {
+... "Name": "Ahmed",
+... "Gender": "Male",
+... "Age": 20,
+... "eMail": "mugy@aucegypt.edu",
+... "Username": "ahmed",
+... "Password": "12121212",
+... "Date": Date(),
+... "Pic": "luffy.jpg",
+... "Mobile": "01006106105"
+... }
+... )
+
+db.User.find().pretty() -- View Users
+
+-- Update User
+
+db.User.update(
+... {"Username": "ahmed"},
+... {
+... $set: {"Mobile": "01101100111"}
+... }
+... )
+
+-- Delete User
+
+db.User.remove( {"Username": "mugywara"} )
+
+------- Posts ----------
+
+-- Create Post
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Posts":{"Text": "Kinglakokola!", "Date": Date()}}} )
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Posts":{"Text": "Lol!", "Date": Date()}}} )
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Posts":{"Text": "New!", "Date": Date()}}} )
+
+-- Edit post
+
+db.User.update( {"Username": "ahmed", "Posts.Text": "New!"}, {$set: {"Posts.$.Date": Date()}} )
+
+-- Delete Post
+
+db.User.update({"Username": "ahmed"}, {$pull: {"Posts":{"Text": "Lol!"}}}, {multi:true} )
+
+
+--------- Pictures ------------
+
+-- Create pic
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Pics":{"Image": "Sunny.jpg", "Caption": "New Boat!", "Date": Date()}}} )
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Pics":{"Image": "Ha.jpg", "Caption": "N!", "Date": Date()}}} )
+
+db.User.update( {"Username": "ahmed"}, {$push: {"Pics":{"Image": "Yo.jpg", "Caption": "Q!", "Date": Date()}}} )
+
+-- Edit pic
+
+db.User.update( {"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$set: {"Pics.$.Date": Date()}} )
+
+-- Delete pic
+
+db.User.update({"Username": "ahmed"}, {$pull: {"Pics":{"Image": "Yo.jpg"}}}, {multi:true} )
+
+
+---------- Comments ----------
+
+-- Create Comments
+
+db.User.update({"Username": "ahmed", "Posts.Text": "New!"}, {$push: {"Posts.$.Comments": { "Text": "lols", "Username": "Zoro", "Date": Date()}}}) -- Create Comment on a post
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$push: {"Pics.$.Comments": { "Text": "Hahaha", "Username": "Zoro", "Date": Date()}}}) -- Create Comment on a pic
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$push: {"Pics.$.Comments.0.Reply": { "Text": "Hahaha34", "Username": "ahmed", "Date": Date()}}}) -- Create reply on a comment
+
+-- Edit comment
+
+db.User.update( {"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$set: {"Pics.$.Comments.0.Text": "No_haha"}} )
+
+-- Delete comment
+
+db.User.update({"Username": "ahmed", "Posts.Text": "Kinglakokola!"}, {$pull: {"Posts.$.Comments":{"Text": "lols"}}}, {multi:true} )
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Sunny.jpg"}, {$pull: {"Pics.$.Comments":{"Text": "lols222"}}}, {multi:true} )
+
+
+
+---------- Reactions ----------
+
+-- Create Reactions
+
+db.User.update({"Username": "ahmed", "Posts.Text": "New!"}, {$push: {"Posts.$.Reactions": { "Reaction": "Love", "Username": "Hamada", "Date": Date()}}}) -- Create Reaction on a post
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$push: {"Pics.$.Reactions": { "Reaction": "Love", "Username": "Zoro", "Date": Date()}}}) -- Create Reaction on a pic
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$push: {"Pics.$.Comments.0.Reactions": { "Reaction": "Love", "Username": "ahmed", "Date": Date()}}}) -- Create Reaction on a comment
+
+db.User.update({"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$push: {"Pics.$.Comments.0.Reply.0.Reactions": { "Reaction": "Love", "Username": "ahmed", "Date": Date()}}}) -- Create Reaction on a reply
+
+-- Edit Reactions
+
+db.User.update( {"Username": "ahmed", "Pics.Image": "Ha.jpg"}, {$set: {"Pics.$.Reactions.0.Reaction": "Hate"}} )
+
+-- Delete Reactions
+
+db.User.update({"Username": "ahmed", "Posts.Text": "New!"}, {$pull: {"Posts.$.Reactions":{"Reaction": "Love"}}}, {multi:true} )
+

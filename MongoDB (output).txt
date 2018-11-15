@@ -1,0 +1,86 @@
+Last .find().pretty() output:
+{
+	"_id" : ObjectId("5afafafd519648b0b43e8d57"),
+	"Name" : "Ahmed",
+	"Gender" : "Male",
+	"Age" : 20,
+	"eMail" : "mugy@aucegypt.edu",
+	"Username" : "ahmed",
+	"Password" : "12121212",
+	"Date" : "Tue May 15 2018 17:21:33 GMT+0200 (EET)",
+	"Pic" : "luffy.jpg",
+	"Mobile" : "01006106105",
+	"Posts" : [
+		{
+			"Text" : "Kinglakokola!",
+			"Date" : "Tue May 15 2018 17:21:44 GMT+0200 (EET)",
+			"Comments" : [
+				{
+					"Text" : "lols222",
+					"Username" : "Zoro",
+					"Date" : "Tue May 15 2018 17:30:44 GMT+0200 (EET)"
+				}
+			]
+		},
+		{
+			"Text" : "New!",
+			"Date" : "Tue May 15 2018 17:21:52 GMT+0200 (EET)",
+			"Reactions" : [ ],
+			"Comments" : [
+				{
+					"Text" : "lols",
+					"Username" : "Zoro",
+					"Date" : "Tue May 15 2018 17:57:47 GMT+0200 (EET)"
+				}
+			]
+		}
+	],
+	"Pics" : [
+		{
+			"Image" : "Sunny.jpg",
+			"Caption" : "New Boat!",
+			"Date" : "Tue May 15 2018 17:24:08 GMT+0200 (EET)",
+			"Comments" : [ ]
+		},
+		{
+			"Image" : "Ha.jpg",
+			"Caption" : "N!",
+			"Date" : "Tue May 15 2018 17:24:49 GMT+0200 (EET)",
+			"Comments" : [
+				{
+					"Text" : "No_haha",
+					"Username" : "Zoro",
+					"Date" : "Tue May 15 2018 17:32:01 GMT+0200 (EET)",
+					"Reply" : [
+						{
+							"Text" : "Hahaha34",
+							"Username" : "ahmed",
+							"Date" : "Tue May 15 2018 17:39:47 GMT+0200 (EET)",
+							"Reactions" : [
+								{
+									"Reaction" : "Love",
+									"Username" : "ahmed",
+									"Date" : "Tue May 15 2018 18:00:10 GMT+0200 (EET)"
+								}
+							]
+						}
+					],
+					"Reactions" : [
+						{
+							"Reaction" : "Love",
+							"Username" : "ahmed",
+							"Date" : "Tue May 15 2018 17:59:17 GMT+0200 (EET)"
+						}
+					]
+				}
+			],
+			"Reactions" : [
+				{
+					"Reaction" : "Hate",
+					"Username" : "Zoro",
+					"Date" : "Tue May 15 2018 17:58:41 GMT+0200 (EET)"
+				}
+			]
+		}
+	]
+}
